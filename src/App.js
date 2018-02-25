@@ -12,7 +12,7 @@ class App extends Component {
       };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this)
   }
 
   handleChange(event) {
@@ -20,13 +20,11 @@ class App extends Component {
     console.log("change")
   }
 
-
-
-  handleSubmit(event) {
-    console.log("submit")
-    // var url = "http://www.sentiment140.com/api/classify?text={this.state.value}";
-    // axios.get(url)
-    // .then(response => this.setState({value: response}))
+  handleClick () {
+    console.log('Click')
+    var url = "http://www.sentiment140.com/api/classify?text=happy";
+    axios.get(url)
+    .then(response => console.log(response))
     }
 
   render() {
@@ -35,13 +33,15 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to Our App</h1>
         </header>
-        <form onSubmit={this.handleSubmit}>
         <h2>Enter sentiment check phrase : </h2>
         <label>
           <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Submit" />
-      </form>
+        <div className='button__container'>
+          <button className='button' onClick={this.handleClick}>
+            Click Me
+          </button>
+        </div>
       <h2>Value = {this.state.value} </h2>
       </div>
     );
